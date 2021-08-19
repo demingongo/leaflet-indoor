@@ -190,6 +190,25 @@ L.Indoor = L.Layer.extend({
       if (layer.setStyle) {
         layer.setStyle(style);
       }
+    },
+    getBounds: function () {
+        var currentLayer = this.getCurrentLayer();
+        var bounds = null;
+        if(currentLayer
+            && currentLayer.getBounds) {
+                bounds = currentLayer.getBounds();
+        }
+        return bounds;
+    },
+    getCurrentLayer: function () {
+        var level = this.getLevel();
+        var r = null;
+        if(level != null 
+            && this._layers
+            && this._layers[level]) {
+                r = this._layers[level];
+        }
+        return r;
     }
 });
 
